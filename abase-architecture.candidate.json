@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "ABase Ecosystem - Runtime & Multi-Tier Architecture",
+    "output": ".archify/architecture-abase-20261004/abase-architecture.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/AdilAliAnsari/abase.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "197ca7e3f099e4ebe5225130adb6b00be6d65e95"
+    }
+  },
+  "components": [
+    {
+      "id": "mobile",
+      "type": "frontend",
+      "label": "Mobile App",
+      "sublabel": "Expo / React Native",
+      "pos": [40, 290],
+      "size": [140, 64],
+      "sources": [
+        { "path": "mobile/src/App.tsx", "line": 15, "end_line": 24, "label": "App root" },
+        { "path": "mobile/src/navigation/AppNavigator.tsx", "line": 37, "end_line": 109, "label": "Navigation & tabs" },
+        { "path": "mobile/src/components/AiChat.tsx", "line": 41, "end_line": 45, "label": "API endpoints" },
+        { "path": "mobile/src/components/AiChat.tsx", "line": 175, "end_line": 186, "label": "Chat stream fetch" },
+        { "path": "mobile/src/screens/PDFLibraryScreen.tsx", "line": 45, "end_line": 60, "label": "PDF reader modal" },
+        { "path": "mobile/src/screens/VideoScreen.tsx", "line": 40, "end_line": 60, "label": "MX video player" }
+      ]
+    },
+    {
+      "id": "api",
+      "type": "backend",
+      "label": "Express Gateway",
+      "sublabel": "Node 22 :3000",
+      "pos": [300, 290],
+      "size": [140, 64],
+      "sources": [
+        { "path": "backend/src/index.js", "line": 14, "end_line": 26, "label": "Express app + routes" },
+        { "path": "backend/src/index.js", "line": 50, "end_line": 55, "label": "Server listen & DB connect" },
+        { "path": "backend/Dockerfile", "line": 1, "end_line": 14, "label": "Container image" },
+        { "path": "docker-compose.yml", "line": 1, "end_line": 16, "label": "Compose definition" }
+      ]
+    },
+    {
+      "id": "authroutes",
+      "type": "backend",
+      "label": "Auth Routes",
+      "sublabel": "/api/auth OTP flow",
+      "pos": [570, 50],
+      "size": [140, 64],
+      "sources": [
+        { "path": "backend/src/routes/authRoutes.js", "line": 47, "end_line": 111, "label": "Register & OTP" },
+        { "path": "backend/src/routes/authRoutes.js", "line": 237, "end_line": 303, "label": "Login flow" },
+        { "path": "backend/src/routes/authRoutes.js", "line": 307, "end_line": 348, "label": "Forgot password" }
+      ]
+    },
+    {
+      "id": "guard",
+      "type": "security",
+      "label": "Clerk Auth Guard",
+      "sublabel": "clerkMiddleware",
+      "tag": "protectRoute",
+      "pos": [570, 170],
+      "size": [140, 64],
+      "sources": [
+        { "path": "backend/src/index.js", "line": 20, "label": "clerkMiddleware" },
+        { "path": "backend/src/routes/auth.js", "line": 50, "end_line": 71, "label": "protectRoute" }
+      ]
+    },
+    {
+      "id": "listings",
+      "type": "backend",
+      "label": "Listing Routes",
+      "sublabel": "/api/pdf, /api/books",
+      "pos": [570, 290],
+      "size": [140, 64],
+      "sources": [
+        { "path": "backend/src/routes/pdfRoutes.js", "line": 8, "end_line": 57, "label": "Create listing" },
+        { "path": "backend/src/routes/pdfRoutes.js", "line": 60, "end_line": 133, "label": "List & search" },
+        { "path": "backend/src/routes/bookRoutes.js", "line": 8, "end_line": 55, "label": "Book create & list" }
+      ]
+    },
+    {
+      "id": "airoutes",
+      "type": "backend",
+      "label": "AI Route Bridge",
+      "sublabel": "/api/ai SSE Proxy",
+      "pos": [570, 410],
+      "size": [140, 64],
+      "sources": [
+        { "path": "LLM backend/express/src/routes/aiRoutes.js", "line": 24, "end_line": 33, "label": "LLM health check" },
+        { "path": "LLM backend/express/src/routes/aiRoutes.js", "line": 36, "end_line": 77, "label": "SSE streaming proxy" },
+        { "path": "LLM backend/express/src/routes/aiRoutes.js", "line": 79, "end_line": 81, "label": "Chat router endpoint" }
+      ]
+    },
+    {
+      "id": "gmail",
+      "type": "external",
+      "label": "Gmail SMTP",
+      "sublabel": "via Nodemailer",
+      "pos": [870, 50],
+      "size": [140, 64],
+      "sources": [
+        { "path": "backend/src/utils/emailServices.js", "line": 3, "end_line": 9, "label": "Gmail transport" },
+        { "path": "backend/src/utils/emailServices.js", "line": 35, "label": "Send verification" },
+        { "path": "backend/src/utils/emailServices.js", "line": 57, "label": "Send reset" }
+      ]
+    },
+    {
+      "id": "mongo",
+      "type": "database",
+      "label": "MongoDB",
+      "sublabel": "Mongoose: User, PDF",
+      "pos": [870, 230],
+      "size": [140, 64],
+      "sources": [
+        { "path": "backend/src/lib/db.js", "line": 3, "end_line": 10, "label": "connectDB" },
+        { "path": "backend/src/models/User.js", "line": 3, "end_line": 36, "label": "User model" },
+        { "path": "backend/src/models/PDF.js", "line": 3, "end_line": 81, "label": "PDF model" },
+        { "path": "backend/src/models/Book.js", "line": 3, "end_line": 81, "label": "Book model" }
+      ]
+    },
+    {
+      "id": "llmserver",
+      "type": "backend",
+      "label": "PyTorch LLM Server",
+      "sublabel": "FastAPI :8000 (2B)",
+      "pos": [870, 410],
+      "size": [140, 64],
+      "sources": [
+        { "path": "LLM backend/llm-server/server.py", "line": 25, "end_line": 35, "label": "FastAPI & CUDA init" },
+        { "path": "LLM backend/llm-server/server.py", "line": 60, "end_line": 94, "label": "OpenAI /v1/chat completions" },
+        { "path": "LLM backend/llm-server/model.py", "line": 25, "end_line": 115, "label": "2B Causal Transformer" },
+        { "path": "LLM backend/llm-server/config_2b.json", "line": 1, "end_line": 13, "label": "Model hyperparameters" },
+        { "path": "LLM backend/llm-server/train.py", "line": 1, "end_line": 60, "label": "Distributed training" }
+      ]
+    },
+    {
+      "id": "agents",
+      "type": "frontend",
+      "label": "GSD Agent System",
+      "sublabel": "Workflows & Skills",
+      "pos": [40, 480],
+      "size": [140, 64],
+      "sources": [
+        { "path": ".agents/skills/executor/SKILL.md", "line": 1, "end_line": 50, "label": "GSD executor skill" },
+        { "path": ".agents/skills/planner/SKILL.md", "line": 1, "end_line": 50, "label": "GSD planner skill" },
+        { "path": "adapters/GEMINI.md", "line": 1, "end_line": 40, "label": "Gemini adapter" },
+        { "path": "adapters/CLAUDE.md", "line": 1, "end_line": 40, "label": "Claude adapter" },
+        { "path": "deployment/deployment.md", "line": 1, "end_line": 50, "label": "Deployment spec" }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Docker container: abase-backend",
+      "wraps": ["api", "authroutes", "guard", "listings", "airoutes"]
+    },
+    {
+      "kind": "region",
+      "label": "Inference Engine",
+      "wraps": ["llmserver"]
+    },
+    {
+      "kind": "region",
+      "label": "Autonomous Development",
+      "wraps": ["agents"]
+    }
+  ],
+  "connections": [
+    { "id": "mobile-api", "from": "mobile", "to": "api", "label": "REST Requests" },
+    { "id": "mobile-airoutes", "from": "mobile", "to": "airoutes", "label": "/api/ai/chat (SSE)", "variant": "dashed" },
+    { "id": "api-clerk", "from": "api", "to": "guard", "label": "clerkMiddleware", "variant": "security" },
+    { "id": "api-auth-routes", "from": "api", "to": "authroutes", "label": "/api/auth" },
+    { "id": "api-listings", "from": "api", "to": "listings", "label": "/api/pdf, /api/books" },
+    { "id": "api-airoutes", "from": "api", "to": "airoutes", "label": "/api/ai (bridge)" },
+    { "id": "airoutes-llm", "from": "airoutes", "to": "llmserver", "label": "FastAPI :8000 (SSE)", "variant": "emphasis" },
+    { "id": "auth-routes-getauth", "from": "authroutes", "to": "guard", "label": "getAuth (/me)", "variant": "security" },
+    { "id": "listings-protect", "from": "listings", "to": "guard", "label": "protectRoute", "variant": "security" },
+    { "id": "auth-routes-smtp", "from": "authroutes", "to": "gmail", "label": "OTP emails" },
+    { "id": "auth-routes-mongo", "from": "authroutes", "to": "mongo", "label": "User read/write" },
+    { "id": "guard-user-lookup", "from": "guard", "to": "mongo", "label": "User by clerkId" },
+    { "id": "listings-mongo", "from": "listings", "to": "mongo", "label": "PDF / Book CRUD" },
+    { "id": "agents-mobile", "from": "agents", "to": "mobile", "label": "Autonomous tests", "variant": "dashed" }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Mobile App & Rich Media",
+      "items": [
+        "React Native & Expo client with glassmorphism UI, shader background, and starfield animations",
+        "Interactive drawer navigation with Statistics, MyCards, History, Inbox, and Account screens",
+        "PDF Library & Reader modal with page tracking, bookmarks, fullscreen mode, and browser fallback",
+        "MX Player modal featuring gesture brightness/volume controls, speed changer, and 10s seek",
+        "Real-time AI Chat interface with agent selector, 2B model picker, and SSE live stream display"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Backend & PyTorch LLM Engine",
+      "items": [
+        "Node 22 Express REST API containerized with Docker and MongoDB persistence via Mongoose",
+        "Custom 2-Billion parameter PyTorch Causal Transformer (RoPE, RMSNorm, SwiGLU, KV Cache)",
+        "FastAPI LLM inference server (:8000) providing OpenAI-compatible streaming endpoints",
+        "Express bridge (/api/ai/chat) piping SSE token streams from Python server to mobile client",
+        "Nodemailer Gmail SMTP integration for OTP registration, password recovery, and email verification"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Agentic Workflows & Multi-Cloud Specs",
+      "items": [
+        "Structured GSD (Get Shit Done) framework with planner, executor, debugger, and verifier skills",
+        "Multi-model adapter specifications for Claude, Gemini, and OpenAI LLMs in adapters/",
+        "Standardized multi-environment build, deployment, release checklist, and rollback procedures"
+      ]
+    }
+  ]
+}
