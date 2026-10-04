@@ -1,0 +1,23 @@
+{
+  "name": "abase-architecture",
+  "version": "1.0.0",
+  "description": "ABase Ecosystem - Runtime Architecture Specification & Interactive Visualizer",
+  "main": "index.html",
+  "scripts": {
+    "dev": "serve . -l 3333",
+    "start": "serve . -l 3000",
+    "build": "echo 'Static asset build verified'"
+  },
+  "keywords": [
+    "architecture",
+    "archify",
+    "abase",
+    "react-native",
+    "express",
+    "pytorch",
+    "diagram"
+  ],
+  "author": "Adil Ali Ansari",
+  "license": "MIT",
+  "homepage": "https://github.com/AdilAliAnsari/abase-architecture-#readme"
+}

@@ -1,13 +1,26 @@
-<<<<<<< HEAD
-# abase-architecture-
-=======
 # ABase Ecosystem — Architecture & Interactive Visualizer
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FAdilAliAnsari%2Fabase-architecture-)
 [![Architecture Spec](https://img.shields.io/badge/Architecture-Archify%203.0-blue)](https://github.com/AdilAliAnsari/abase)
 [![Target Repo](https://img.shields.io/badge/Repository-AdilAliAnsari%2Fabase-emerald)](https://github.com/AdilAliAnsari/abase)
 [![Runtime](https://img.shields.io/badge/Runtime-Node%2022%20%7C%20PyTorch%20%7C%20Expo-purple)](https://github.com/AdilAliAnsari/abase)
 
-Comprehensive runtime architecture specification, interactive visualizer, and component schemas for the [ABase Ecosystem](https://github.com/AdilAliAnsari/abase).
+Comprehensive runtime architecture specification, interactive visualizer, and component schemas for the [ABase Ecosystem](https://github.com/AdilAliAnsari/abase), preconfigured for zero-config **Vercel** hosting.
+
+---
+
+## ⚡ One-Click Deploy to Vercel
+
+You can deploy this interactive architecture visualizer to **Vercel** with a single click:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FAdilAliAnsari%2Fabase-architecture-)
+
+### Manual Vercel Deployment Steps
+1. Go to [vercel.com](https://vercel.com) and log in with your GitHub account.
+2. Click **"Add New..."** > **"Project"**.
+3. Import the repository **`AdilAliAnsari/abase-architecture-`**.
+4. Leave framework preset as **Other** (Static site) and root directory as `./`.
+5. Click **"Deploy"** — your architecture diagram is live in seconds with global edge CDN caching and SSL!
 
 ---
 
@@ -64,19 +77,7 @@ Comprehensive runtime architecture specification, interactive visualizer, and co
 
 ---
 
-## 🚀 Running the Interactive Visualizer Locally
-
-### 1. View Directly
-Open [`abase-architecture.html`](./abase-architecture.html) in any modern web browser.
-
-### 2. Local HTTP Server
-```bash
-npx serve .
-# or
-python -m http.server 3333
-```
-
-### 🎮 Interactive Controls
+## 🎮 Interactive Controls
 - **Click any Node**: Opens the Semantic Passport with source line references and route details.
 - **`/`**: Instant fuzzy search across all services and endpoints.
 - **`T`**: Toggle between Dark and Light mode.
@@ -87,6 +88,7 @@ python -m http.server 3333
 ---
 
 ## 📄 Repository Files
+- [`index.html`](./index.html) — Primary Vercel entrypoint serving the interactive visualizer.
+- [`vercel.json`](./vercel.json) — Vercel configuration with route rewrites and security headers.
 - [`abase-architecture.candidate.json`](./abase-architecture.candidate.json) — Source schema specification for the architecture topology.
-- [`abase-architecture.html`](./abase-architecture.html) — Self-contained interactive Archify architecture visualizer.
->>>>>>> 95bbcf8 (feat: add ABase multi-tier architecture candidate specification and interactive visualizer)
+- [`abase-architecture.html`](./abase-architecture.html) — Standalone Archify architecture visualizer.
