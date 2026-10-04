@@ -5,8 +5,7 @@
   "main": "index.html",
   "scripts": {
     "dev": "serve . -l 3333",
-    "start": "serve . -l 3000",
-    "build": "echo 'Static asset build verified'"
+    "start": "serve . -l 3000"
   },
   "keywords": [
     "architecture",
