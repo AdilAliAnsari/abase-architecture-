@@ -4,6 +4,8 @@
   "description": "ABase Ecosystem - Runtime Architecture Specification & Interactive Visualizer",
   "main": "index.html",
   "scripts": {
+    "build:arch": "node scripts/generate_architecture.js && node scripts/update_readme.js && node scripts/validate.js",
+    "validate": "node scripts/validate.js",
     "dev": "serve . -l 3333",
     "start": "serve . -l 3000"
   },
